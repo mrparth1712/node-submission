@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student CRUD</title>
+  </head>
+  <body>
+    <h1>Student CRUD</h1>
+
+    <h3>Add Student</h3>
+    <form action="/insertData" method="post">
+      <input type="text" placeholder="Enter ID" name="id" required />
+      <input type="text" placeholder="Enter Name" name="name" required />
+      <button type="submit">submit</button>
+    </form>
+
+    <hr />
+
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+
+      <% studentlist.map((el) => { %>
+      <tr>
+        <td><%= el.id %></td>
+        <td><%= el.name %></td>
+        <td>
+          <form action="/deleteData" method="post">
+            <input type="hidden" name="id" value="<%= el.id %>" />
+            <button type="submit">Delete</button>
+          </form>
+
+          <form action="/updateData" method="post">
+            <input type="hidden" name="id" value="<%= el.id %>" />
+            <input type="text" name="name" value="<%= el.name %>" required />
+            <button type="submit">Update</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
